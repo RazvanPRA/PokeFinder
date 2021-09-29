@@ -3,7 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import PokemonList from "./scr/screens/PokemonList";
-import PokemonDetails from "./scr/screens/PokemonList";
+import PokemonDetails from "./scr/screens/ProfilePoke";
 
 const Stack = createStackNavigator();
 export default function App() {
