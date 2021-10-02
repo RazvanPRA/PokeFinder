@@ -1,21 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import PokemonList from "./scr/screens/PokemonList";
+import PokemonDetails from "./scr/screens/ProfilePoke";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { useFonts } from "expo-font";
 
+const client = new ApolloClient({
+  uri: "https://beta.pokeapi.co/graphql/v1beta",
+  cache: new InMemoryCache(),
+});
+
+const Stack = createStackNavigator();
 export default function App() {
+  const [loaded] = useFonts({
+    Montserrat: require("./assets/fonts/Gluten.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="PokemonList" component={PokemonList} />
+          <Stack.Screen name="PokemonDetails" component={PokemonDetails} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
