@@ -1,5 +1,5 @@
 export const fonts = {
   bigFont: 36,
-  mediumFont: 24,
-  smallFont: 12,
+  mediumFont: 22,
+  smallFont: 14,
 };

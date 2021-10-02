@@ -3,59 +3,44 @@ import {
   Image,
   Pressable,
   StyleSheet,
-  Text,
   View,
   FlatList,
   TextInput,
 } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import COLORS from "../constants/COLORS";
-import { Dimensions } from "react-native";
+import { useQuery } from "@apollo/client";
+import { getPokemon } from "../queries/getPokemon";
+import PokemonCard from "../components/PokemonCard";
+import { SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
 
-const window = Dimensions.get("window");
-const { height, width } = window;
 const PokemonList = ({ navigation }) => {
+  const { loading, error, data } = useQuery(getPokemon, {
+    variables: {
+      name: "bul",
+    },
+  });
+  // console.log({ data, name: data?.pokemon_v2_pokemon?.[0].name });
   const [text, setText] = useState("");
-  const img = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 0 },
-  ];
 
   return (
-    <View>
-      <View style={styles.headerStyle}>
+    <View style={styles.container}>
+      <View style={styles.searchContainer}>
         <TextInput style={styles.search} onChangeText={setText} value={text} />
         <Icon name="search" color={COLORS.header} style={styles.icon} />
       </View>
-      <Pressable>
-        <Text style={{ borderWidth: 1 }}>Poke</Text>
-      </Pressable>
 
       <FlatList
-        data={img}
+        style={styles.flatList}
+        contentContainerStyle={styles.contentFlatList}
+        numColumns={2}
+        data={data?.pokemon_v2_pokemon || []}
         renderItem={({ item }) => (
-          <Pressable
-            onPress={() => {
-              navigation.navigate("PokemonDetails");
-            }}
-          >
-            <Image
-              style={styles.pokeImage}
-              source={require("../../pokeImage/denise-jans-l1SEP7nf2XU-unsplash.jpg")}
-            />
-          </Pressable>
+          <PokemonCard item={item} navigation={navigation} />
         )}
         initialNumToRender={10}
         ListHeaderComponentStyle={{ flexWrap: "wrap" }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item?.id}
       />
     </View>
   );
@@ -64,31 +49,29 @@ const PokemonList = ({ navigation }) => {
 export default PokemonList;
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flex: 1,
   },
-  headerStyle: {
-    padding: 20,
-    flexDirection: "row",
+  searchContainer: {
+    paddingHorizontal: SPACE_LARGE,
+    marginTop: SPACE_LARGE,
+    justifyContent: "center",
   },
   search: {
     borderWidth: 2,
     borderColor: COLORS.header,
     borderRadius: 40,
-    flex: 1,
     height: 46,
     paddingHorizontal: 20,
   },
   icon: {
     position: "absolute",
-    top: height / 21.5,
-    left: width / 1.16,
+    right: SPACE_LARGE * 2,
     fontSize: 20,
   },
-  pokeImage: {
-    width: width / 2.5,
-    height: height / 3,
-    borderWidth: 5,
-    borderColor: "red",
-    marginBottom: 20,
+  flatList: {
+    flex: 1,
+  },
+  contentFlatList: {
+    padding: SPACE_MEDIUM,
   },
 });

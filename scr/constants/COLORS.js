@@ -4,5 +4,6 @@ const COLORS = {
   rock: "#78480F",
   air: "#02FDC1",
   fire: "#E86318",
+  white: "#FFFFFF",
 };
 export default COLORS;
