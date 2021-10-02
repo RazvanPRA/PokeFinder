@@ -5,5 +5,6 @@ const COLORS = {
   air: "#02FDC1",
   fire: "#E86318",
   white: "#FFFFFF",
+  colorTextDetails: "#1D5093",
 };
 export default COLORS;
