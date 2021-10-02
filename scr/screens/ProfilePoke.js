@@ -1,14 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const PokemonDetails = () => {
   return (
     <View>
-      <Text>Profile Poke</Text>
+      <Image
+        style={styles.pokeImage}
+        source={require("../../pokeImage/denise-jans-l1SEP7nf2XU-unsplash.jpg")}
+      />
     </View>
   );
 };
 
 export default PokemonDetails;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  pokeImage: {},
+});
