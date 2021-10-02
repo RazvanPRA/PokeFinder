@@ -2,8 +2,8 @@ import "react-native-gesture-handler";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import PokemonList from "./scr/screens/PokemonList";
-import PokemonDetails from "./scr/screens/ProfilePoke";
+import PokemonList from "./src/screens/PokemonList";
+import PokemonDetails from "./src/screens/ProfilePoke";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { useFonts } from "expo-font";
 
