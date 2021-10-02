@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, Pressable, Image, View } from "react-native";
 import COLORS from "../constants/COLORS";
-import { fonts } from "../constants/fonts";
+import { MEDIUM_FONT } from "../constants/fonts";
 import { SPACE_MEDIUM } from "../constants/layouts";
 
 const PokemonCard = ({ item, navigation }) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${item.id}`)
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  }, []);
+  const imageSource = data?.sprites?.front_default;
   return (
     <View style={styles.container}>
       <Pressable
@@ -17,7 +26,9 @@ const PokemonCard = ({ item, navigation }) => {
       >
         <Image
           style={styles.pokeImage}
-          source={require("../../pokeImage/denise-jans-l1SEP7nf2XU-unsplash.jpg")}
+          source={{
+            uri: imageSource,
+          }}
         />
         <Text style={[styles.text]}>{item?.name}</Text>
       </Pressable>
@@ -50,7 +61,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: SPACE_MEDIUM,
     color: COLORS.white,
-    fontSize: fonts.mediumFont,
+    fontSize: MEDIUM_FONT,
     // fontFamily: "Gluten",
   },
 });
