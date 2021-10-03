@@ -7,4 +7,5 @@ export const pokeColors = {
   bug: { first: "#6174A7", second: "#6EABC6" },
   normal: { first: "#AFAC91", second: "#C5C9AC" },
   electric: { first: "#DDE118", second: "#FAFF00" },
+  fairy: { first: "#840B70", second: "#BE4EAC" },
 };

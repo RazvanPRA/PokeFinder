@@ -36,7 +36,7 @@ export default function App() {
               <View>
                 <Image
                   style={{ height: 31, aspectRatio: 5.0967 }}
-                  source={require("./assets/pokeLogo.png")}
+                  source={require("./assets/PokeLogo.png")}
                 />
               </View>
             ),
