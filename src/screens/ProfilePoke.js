@@ -1,62 +1,60 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Abilities from "../components/Abilities";
-import AbilityCard from "../components/AbilityCard";
-
+import ImageCarousel from "../components/ImageCarousel";
 import PokeStats from "../components/PokeStats";
 import COLORS from "../constants/COLORS";
 import { MEDIUM_FONT, SMALL_FONT } from "../constants/fonts";
-import { SPACE_MEDIUM } from "../constants/layouts";
+import { SCREEN_WIDTH, SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
 import { capitalizeString } from "../utils/capitalizeString";
 
 const PokemonDetails = ({ route }) => {
-  const { data } = route.params;
-  const name = data?.name;
-  const types = data?.pokemon_v2_pokemontypes;
-  const stats = data?.pokemon_v2_pokemonstats;
-  const specy = data?.pokemon_v2_pokemonspecy;
-  const abilities = data?.pokemon_v2_pokemonabilities;
+  const { item, sprites, typePokemon } = route.params;
+  const name = item?.name;
+  const types = item?.pokemon_v2_pokemontypes;
+  const stats = item?.pokemon_v2_pokemonstats;
+  const specy = item?.pokemon_v2_pokemonspecy;
+  const abilities = item?.pokemon_v2_pokemonabilities;
+
+  const imagesMap = Object.values(sprites)
+    .filter((item) => {
+      return typeof item === "string";
+    })
+    .reverse();
 
   return (
-    <View style={styles.content}>
-      <Text>{name}</Text>
-      {/* <Image
-        style={styles.pokeImage}
-        source={require("../../pokeImage/denise-jans-l1SEP7nf2XU-unsplash.jpg")}
-      /> */}
-      {types.map((item) => {
-        return (
-          <Text style={styles.content} key={item?.pokemon_v2_type?.name}>
-            {item?.pokemon_v2_type?.name}
-          </Text>
-        );
-      })}
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <ImageCarousel
+        typePokemon={typePokemon}
+        name={name}
+        imagesMap={imagesMap}
+        types={types}
+      />
+      <View style={styles.container}>
+        <PokeStats stats={stats} />
+        <Text style={styles.bigText}>
+          Habitat -{" "}
+          {capitalizeString(specy?.pokemon_v2_pokemonhabitat?.name) ||
+            "Unknown"}
+        </Text>
+        <Text style={styles.bigText}>
+          Species -{" "}
+          {capitalizeString(specy?.pokemon_v2_pokemonspecies?.[0]?.name) ||
+            "Unknown"}
+        </Text>
 
-      <PokeStats stats={stats} />
-      <Text style={styles.bigText}>
-        Habitat -{" "}
-        {capitalizeString(specy?.pokemon_v2_pokemonhabitat?.name) || "Unknown"}
-      </Text>
-      <Text style={styles.bigText}>
-        Species -{" "}
-        {capitalizeString(specy?.pokemon_v2_pokemonspecies?.[0]?.name) ||
-          "Unknown"}
-      </Text>
-
-      <Abilities abilities={abilities} />
-    </View>
+        <Abilities abilities={abilities} />
+      </View>
+    </ScrollView>
   );
 };
 
 export default PokemonDetails;
 
 const styles = StyleSheet.create({
-  content: {
-    padding: SPACE_MEDIUM,
-  },
-  pokeImage: {
-    width: 100,
-    aspectRatio: 1,
+  container: {
+    paddingHorizontal: SPACE_LARGE,
+    paddingTop: SPACE_LARGE,
   },
   bigText: {
     fontSize: MEDIUM_FONT,

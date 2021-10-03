@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
 import CustomIcon from "./CustomIcon";
 import COLORS from "../constants/COLORS";
 import { MEDIUM_FONT } from "../constants/fonts";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../constants/layouts";
+import { SPACE_MEDIUM } from "../constants/layouts";
 import ModalPokeStatus from "./ModalPokeStatus";
 
 const PokeStats = ({ stats }) => {
@@ -56,15 +56,14 @@ const PokeStats = ({ stats }) => {
 
       <View style={styles.content}>
         {stats &&
-          stats.map((item) => {
+          stats.map((item, index) => {
             return (
-              <View style={styles.container}>
+              <View key={index} style={styles.container}>
                 <CustomIcon
                   name={icons?.[item?.pokemon_v2_stat?.id]?.iconName}
                   family={item.iconFamily}
                   color={COLORS.colorTextDetails}
                   style={styles.icon}
-                  // icons={icons}
                 />
                 <Text style={styles.text}>{item.base_stat}</Text>
               </View>
@@ -85,6 +84,7 @@ const styles = StyleSheet.create({
   bigText: {
     fontSize: MEDIUM_FONT,
     color: COLORS.colorTextDetails,
+    marginTop: SPACE_MEDIUM,
   },
   container: {
     borderWidth: 2,

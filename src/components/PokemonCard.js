@@ -3,6 +3,9 @@ import { StyleSheet, Text, Pressable, Image, View } from "react-native";
 import COLORS from "../constants/COLORS";
 import { MEDIUM_FONT } from "../constants/fonts";
 import { SPACE_MEDIUM } from "../constants/layouts";
+import { pokeColors } from "../constants/pokeColors";
+import { LinearGradient } from "expo-linear-gradient";
+import { capitalizeString } from "../utils/capitalizeString";
 
 const PokemonCard = ({ item, navigation }) => {
   const [data, setData] = useState(null);
@@ -13,25 +16,35 @@ const PokemonCard = ({ item, navigation }) => {
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   }, []);
+  const typePokemon = item?.pokemon_v2_pokemontypes[0]?.pokemon_v2_type?.name;
   const imageSource = data?.sprites?.front_default;
+
   return (
     <View style={styles.container}>
-      <Pressable
-        style={styles.pressable}
-        onPress={() => {
-          navigation.navigate("PokemonDetails", {
-            data: item,
-          });
-        }}
+      <LinearGradient
+        colors={[pokeColors[typePokemon].first, pokeColors[typePokemon].second]}
+        style={styles.gradient}
       >
-        <Image
-          style={styles.pokeImage}
-          source={{
-            uri: imageSource,
+        <Pressable
+          style={styles.pressable}
+          onPress={() => {
+            navigation.navigate("PokemonDetails", {
+              item: item,
+              sprites: data?.sprites,
+              typePokemon: typePokemon,
+            });
           }}
-        />
-        <Text style={[styles.text]}>{item?.name}</Text>
-      </Pressable>
+        >
+          <Image
+            resizeMode="contain"
+            style={styles.pokeImage}
+            source={{
+              uri: imageSource,
+            }}
+          />
+          <Text style={[styles.text]}>{capitalizeString(item?.name)}</Text>
+        </Pressable>
+      </LinearGradient>
     </View>
   );
 };
@@ -44,17 +57,20 @@ const styles = StyleSheet.create({
     aspectRatio: 0.718309,
     padding: SPACE_MEDIUM,
   },
+  gradient: {
+    borderRadius: 20,
+  },
   pressable: {
     width: "100%",
     height: "100%",
   },
+
   pokeImage: {
     width: "100%",
     height: "100%",
     position: "absolute",
-    borderColor: "red",
     marginBottom: 20,
-    borderRadius: 30,
+    borderRadius: 20,
   },
   text: {
     alignSelf: "center",
@@ -63,5 +79,6 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: MEDIUM_FONT,
     // fontFamily: "Gluten",
+    marginHorizontal: SPACE_MEDIUM,
   },
 });
