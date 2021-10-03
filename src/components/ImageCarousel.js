@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT, SMALL_FONT } from "../constants/fonts";
+import { MEDIUM_FONT, BIG_FONT } from "../constants/fonts";
 import { SCREEN_WIDTH, SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
 import { pokeColors } from "../constants/pokeColors";
 import { capitalizeString } from "../utils/capitalizeString";
@@ -79,7 +79,6 @@ export default ImageCarousel;
 
 const styles = StyleSheet.create({
   container: {
-    // alignItems: "center",
     justifyContent: "space-between",
     width: SCREEN_WIDTH,
     aspectRatio: 1.4,
@@ -95,6 +94,7 @@ const styles = StyleSheet.create({
   containerAbilities: {
     fontSize: MEDIUM_FONT,
     color: COLORS.colorTextDetails,
+    fontFamily: "GlutenSemiBold",
   },
   pokeImage: {
     width: SCREEN_WIDTH,
@@ -102,10 +102,11 @@ const styles = StyleSheet.create({
     marginTop: SPACE_LARGE,
   },
   title: {
-    fontSize: MEDIUM_FONT,
+    fontSize: BIG_FONT,
     color: COLORS.white,
     textAlign: "center",
     marginTop: SPACE_MEDIUM,
+    fontFamily: "GlutenSemiBold",
   },
   contentCircles: {
     flexDirection: "row",

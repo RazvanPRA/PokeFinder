@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginHorizontal: -5,
   },
   bigText: {
     fontSize: MEDIUM_FONT,
