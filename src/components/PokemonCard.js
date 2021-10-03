@@ -13,8 +13,7 @@ const PokemonCard = ({ item, navigation }) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${item.id}`)
       .then((response) => response.json())
       .then((json) => setData(json))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+      .catch((error) => console.log(error));
   }, []);
   const typePokemon = item?.pokemon_v2_pokemontypes[0]?.pokemon_v2_type?.name;
   const imageSource = data?.sprites?.front_default;
@@ -22,7 +21,10 @@ const PokemonCard = ({ item, navigation }) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={[pokeColors[typePokemon].first, pokeColors[typePokemon].second]}
+        colors={[
+          pokeColors[typePokemon]?.first,
+          pokeColors[typePokemon]?.second,
+        ]}
         style={styles.gradient}
       >
         <Pressable

@@ -14,7 +14,10 @@ const ImageCarousel = ({ name, imagesMap, types, typePokemon }) => {
     <View style={styles.container}>
       <LinearGradient
         style={{ position: "absolute" }}
-        colors={[pokeColors[typePokemon].first, pokeColors[typePokemon].second]}
+        colors={[
+          pokeColors[typePokemon]?.first,
+          pokeColors[typePokemon]?.second,
+        ]}
       >
         <ScrollView
           onScroll={({ nativeEvent }) => {
@@ -62,6 +65,7 @@ const ImageCarousel = ({ name, imagesMap, types, typePokemon }) => {
           {imagesMap?.map((item, index) => {
             return (
               <View
+                key={index}
                 style={[
                   styles.circles,
                   activeButton === index && styles.activeCircle,
