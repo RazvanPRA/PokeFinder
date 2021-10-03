@@ -42,15 +42,12 @@ export const getPokemon = gql`
           name
         }
       }
-    }
-    pokemon_v2_pokemonstat(
-      where: { pokemon_v2_pokemon: { name: { _regex: $name } } }
-    ) {
-      id
-      effort
-      base_stat
-      pokemon_v2_stat {
-        name
+      pokemon_v2_pokemonstats {
+        base_stat
+        pokemon_v2_stat {
+          name
+          id
+        }
       }
     }
   }

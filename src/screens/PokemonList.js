@@ -17,10 +17,9 @@ import { SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
 const PokemonList = ({ navigation }) => {
   const { loading, error, data } = useQuery(getPokemon, {
     variables: {
-      name: "bul",
+      name: "charm",
     },
   });
-  // console.log({ data, name: data?.pokemon_v2_pokemon?.[0].name });
   const [text, setText] = useState("");
 
   return (
