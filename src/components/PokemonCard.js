@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: SPACE_MEDIUM,
     color: COLORS.white,
-    fontSize: MEDIUM_FONT,
-    // fontFamily: "Gluten",
+    fontSize: MEDIUM_FONT - 2,
+    fontFamily: "GlutenSemiBold",
     marginHorizontal: SPACE_MEDIUM,
   },
 });
