@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import CustomIcon from "./CustomIcon";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT } from "../constants/fonts";
-import { SPACE_MEDIUM } from "../constants/layouts";
+import { SPACE_MEDIUM, MEDIUM_FONT } from "../constants/layouts";
 import ModalPokeStatus from "./ModalPokeStatus";
 
 const PokeStats = ({ stats }) => {
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   icon: {
-    fontSize: 20,
+    fontSize: MEDIUM_FONT - 2,
   },
   text: {
     color: COLORS.colorTextDetails,

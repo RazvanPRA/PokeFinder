@@ -8,6 +8,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { useFonts } from "expo-font";
 import COLORS from "./src/constants/COLORS";
 import { View, Image } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 const client = new ApolloClient({
   uri: "https://beta.pokeapi.co/graphql/v1beta",
@@ -26,10 +27,12 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
+      <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerTintColor: "white",
+            headerBackTitle: "Back",
+            headerTintColor: COLORS.white,
             headerTitleAlign: "center",
             headerStyle: { backgroundColor: COLORS.colorTextDetails },
             headerTitle: () => (
