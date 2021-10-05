@@ -8,15 +8,13 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import Icon from "react-native-vector-icons/Feather";
 import COLORS from "../constants/COLORS";
 import { useQuery } from "@apollo/client";
 import { getPokemon } from "../queries/getPokemon";
 import PokemonCard from "../components/PokemonCard";
-import { SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
+import { SPACE_LARGE, SPACE_MEDIUM, MEDIUM_FONT } from "../constants/layouts";
 import debounce from "lodash.debounce";
 import LottieView from "lottie-react-native";
-import { MEDIUM_FONT } from "../constants/fonts";
 import CustomIcon from "../components/CustomIcon";
 
 const PokemonList = ({ navigation }) => {
@@ -62,6 +60,7 @@ const PokemonList = ({ navigation }) => {
         style={styles.flatList}
         contentContainerStyle={styles.contentFlatList}
         numColumns={2}
+        showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
           <View>
             <Text style={styles.noPokemon}>
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.header,
     borderRadius: 40,
     height: 46,
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACE_LARGE,
     fontFamily: "GlutenSemiBold",
     color: COLORS.colorTextDetails,
   },
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
     right: SPACE_LARGE * 2,
   },
   icon: {
-    fontSize: 20,
+    fontSize: MEDIUM_FONT - 2,
   },
   flatList: {
     flex: 1,

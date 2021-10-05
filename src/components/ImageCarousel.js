@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT, BIG_FONT } from "../constants/fonts";
-import { SCREEN_WIDTH, SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
-import { pokeColors } from "../constants/pokeColors";
+import {
+  SCREEN_WIDTH,
+  SPACE_LARGE,
+  SPACE_MEDIUM,
+  MEDIUM_FONT,
+  BIG_FONT,
+} from "../constants/layouts";
 import { capitalizeString } from "../utils/capitalizeString";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -15,22 +19,20 @@ const ImageCarousel = ({ name, imagesMap, types, typePokemon }) => {
       <LinearGradient
         style={{ position: "absolute" }}
         colors={[
-          pokeColors[typePokemon]?.first,
-          pokeColors[typePokemon]?.second,
+          COLORS.pokeColors[typePokemon]?.first,
+          COLORS.pokeColors[typePokemon]?.second,
         ]}
       >
         <ScrollView
           onScroll={({ nativeEvent }) => {
             const scrollPosition = nativeEvent?.contentOffset?.x;
             const activeIndex = Math.round(scrollPosition / SCREEN_WIDTH);
-            console.log({ scrollPosition, activeIndex });
             setActiveButton(activeIndex);
           }}
           horizontal
           snapToInterval={SCREEN_WIDTH}
           showsHorizontalScrollIndicator={false}
           disableIntervalMomentum={true}
-          style={styles.scrollView}
         >
           {imagesMap?.map((item, index) => {
             return (

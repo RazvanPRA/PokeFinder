@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT } from "../constants/fonts";
-import { SPACE_MEDIUM } from "../constants/layouts";
+import { SPACE_MEDIUM, MEDIUM_FONT } from "../constants/layouts";
 import AbilityCard from "./AbilityCard";
 
 const Abilities = ({ abilities }) => {

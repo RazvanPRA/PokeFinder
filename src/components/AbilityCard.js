@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT, SMALL_FONT } from "../constants/fonts";
-import { SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
+import { SPACE_LARGE, MEDIUM_FONT, SMALL_FONT } from "../constants/layouts";
 import { capitalizeString } from "../utils/capitalizeString";
 
 const AbilityCard = ({ item }) => {

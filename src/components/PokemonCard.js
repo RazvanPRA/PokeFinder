@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, Pressable, Image, View } from "react-native";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT } from "../constants/fonts";
-import { SPACE_MEDIUM } from "../constants/layouts";
-import { pokeColors } from "../constants/pokeColors";
+import { SPACE_MEDIUM, MEDIUM_FONT } from "../constants/layouts";
 import { LinearGradient } from "expo-linear-gradient";
 import { capitalizeString } from "../utils/capitalizeString";
 
@@ -22,8 +20,8 @@ const PokemonCard = ({ item, navigation }) => {
     <View style={styles.container}>
       <LinearGradient
         colors={[
-          pokeColors[typePokemon]?.first,
-          pokeColors[typePokemon]?.second,
+          COLORS.pokeColors[typePokemon]?.first,
+          COLORS.pokeColors[typePokemon]?.second,
         ]}
         style={styles.gradient}
       >
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     position: "absolute",
-    marginBottom: 20,
+    marginBottom: SPACE_MEDIUM,
     borderRadius: 20,
   },
   text: {

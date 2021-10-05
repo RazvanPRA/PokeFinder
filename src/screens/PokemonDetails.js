@@ -1,11 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Abilities from "../components/Abilities";
 import ImageCarousel from "../components/ImageCarousel";
 import PokeStats from "../components/PokeStats";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT, SMALL_FONT } from "../constants/fonts";
-import { SCREEN_WIDTH, SPACE_LARGE, SPACE_MEDIUM } from "../constants/layouts";
+import { SPACE_LARGE, MEDIUM_FONT, SMALL_FONT } from "../constants/layouts";
 import { capitalizeString } from "../utils/capitalizeString";
 
 const PokemonDetails = ({ route }) => {
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
     color: COLORS.colorTextDetails,
   },
   icon: {
-    fontSize: 20,
+    fontSize: MEDIUM_FONT - 2,
   },
   textDetails: {
     fontSize: SMALL_FONT,

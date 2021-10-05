@@ -1,20 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
 import COLORS from "../constants/COLORS";
-import { MEDIUM_FONT } from "../constants/fonts";
-import {
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-  SPACE_LARGE,
-  SPACE_MEDIUM,
-} from "../constants/layouts";
+import { SPACE_LARGE, SPACE_MEDIUM, MEDIUM_FONT } from "../constants/layouts";
 import { capitalizeString } from "../utils/capitalizeString";
 import CustomIcon from "./CustomIcon";
 
 const ModalPokeStatus = ({ modalVisible, setModalVisible, stats, icons }) => {
   return (
     <Modal
-      style={styles.modal}
       animationType="slide"
       transparent={true}
       visible={modalVisible}
@@ -78,11 +71,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACE_LARGE * 2,
   },
   modalView: {
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
     borderRadius: 20,
     paddingVertical: SPACE_MEDIUM,
     paddingHorizontal: SPACE_LARGE,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -97,12 +90,12 @@ const styles = StyleSheet.create({
     top: 10,
   },
   icon: {
-    fontSize: 20,
+    fontSize: MEDIUM_FONT - 2,
     marginRight: SPACE_MEDIUM,
   },
   container: {
     flexDirection: "row",
-    paddingVertical: 5,
+    paddingVertical: SPACE_MEDIUM / 2,
     alignItems: "center",
   },
   text: {
