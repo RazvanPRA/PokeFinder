@@ -1,4 +1,6 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
+
+export const isIos = Platform.OS === "ios";
 
 const window = Dimensions.get("screen");
 const { height, width } = window;

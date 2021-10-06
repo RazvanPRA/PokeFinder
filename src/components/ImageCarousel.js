@@ -7,6 +7,7 @@ import {
   SPACE_MEDIUM,
   MEDIUM_FONT,
   BIG_FONT,
+  isIos,
 } from "../constants/layouts";
 import { capitalizeString } from "../utils/capitalizeString";
 import { LinearGradient } from "expo-linear-gradient";
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
     marginRight: SPACE_LARGE,
     alignSelf: "flex-end",
     paddingBottom: 5,
+    paddingTop: isIos ? 7 : 0,
   },
   containerAbilities: {
     fontSize: MEDIUM_FONT,
