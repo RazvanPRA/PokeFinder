@@ -7,6 +7,7 @@ import {
   TextInput,
   Image,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import COLORS from "../constants/COLORS";
 import { useQuery } from "@apollo/client";
@@ -61,25 +62,29 @@ const PokemonList = ({ navigation }) => {
         contentContainerStyle={styles.contentFlatList}
         numColumns={2}
         showsVerticalScrollIndicator={false}
-        ListEmptyComponent={() => (
-          <View>
-            <Text style={styles.noPokemon}>
-              There is no pokemon to catch with this name
-            </Text>
-            <View style={styles.containerBee}>
-              <Image
-                style={styles.pokeBall}
-                source={require("../../assets/pokeball.png")}
-              />
-              <LottieView
-                source={require("../../assets/bee.json")}
-                autoPlay
-                loop={true}
-                style={styles.bee}
-              />
+        ListEmptyComponent={() =>
+          loading ? (
+            <ActivityIndicator size={"large"} color={COLORS.colorTextDetails} />
+          ) : (
+            <View>
+              <Text style={styles.noPokemon}>
+                There is no pokemon to catch with this name
+              </Text>
+              <View style={styles.containerBee}>
+                <Image
+                  style={styles.pokeBall}
+                  source={require("../../assets/pokeball.png")}
+                />
+                <LottieView
+                  source={require("../../assets/bee.json")}
+                  autoPlay
+                  loop={true}
+                  style={styles.bee}
+                />
+              </View>
             </View>
-          </View>
-        )}
+          )
+        }
         data={data?.pokemon_v2_pokemon || []}
         renderItem={({ item }) => (
           <PokemonCard item={item} navigation={navigation} />
